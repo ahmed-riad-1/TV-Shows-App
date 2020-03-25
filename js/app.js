@@ -36,6 +36,7 @@ searchForm.addEventListener('submit', async e => {
     const q = searchForm['search'].value
     if (q !== previous && q) {
         history.replaceState(null, null, ' ')
+        document.getElementById('cards').style.display = "block"
         resultContainer.innerHTML = ''
         if (document.querySelector('.single')) document.querySelector('.single').parentElement.removeChild(document.querySelector('.single'))
         addLoader(resultContainer)
@@ -70,6 +71,7 @@ searchForm.addEventListener('submit', async e => {
             HTML = `<div class="alert alert-red"><i class="fa fa-exclamation-circle"></i> No Result Found For '${q}'</div>`
         }
 
+
         resultContainer.insertAdjacentHTML('afterbegin', HTML)
         removeLoader()
     }
@@ -77,6 +79,7 @@ searchForm.addEventListener('submit', async e => {
 
 
 const renderSingle = async e => {
+    document.getElementById('cards').style.display = "none"
     resultContainer.innerHTML = ''
     if (document.querySelector('.single')) document.querySelector('.single').parentElement.removeChild(document.querySelector('.single'))
     previous = ''
@@ -131,11 +134,12 @@ const renderSingle = async e => {
             <div class="right">
                 <h1>${data.name}</h1>
                 ${data.summary}
-                <span class="t">Genres: </span>
+                <span class="t"><i class="fa fa-theater-masks"></i> Genres: </span>
                 <div class="genres-pills">
                     ${genres}
                 </div>
-                <p>Language: ${data.language}</p>
+                <p class="lang"><span class="t"><i class="fa fa-language"></i> Language:</span> ${data.language}</p>
+                <p class="lang"><span class="t"><i class="fa fa-star"></i> Rating:</span> <strong>${data.rating.average}</strong> / 10</p>
                 <div class="links">
                     <a class="more" href="${data.officialSite}" target="_blanc" >Official Site</a>
                 </div>
