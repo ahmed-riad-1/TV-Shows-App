@@ -120,7 +120,8 @@ const renderSingle = async e => {
     if (!genres) {
         genres = '<span class="pill red-pill">None</span>'
     }
-
+    let rate = data.rating.average ? `<p class="lang"><span class="t"><i class="fa fa-star"></i> Rating:</span> <strong>${data.rating.average}</strong> / 10</p>` : ''
+    let link = data.officialSite ? `<div class="links"><a class="more" href="${data.officialSite}" target="_blanc" >Official Site</a></div>` : ''
     const page = `
     <section class="single">
         
@@ -139,10 +140,8 @@ const renderSingle = async e => {
                     ${genres}
                 </div>
                 <p class="lang"><span class="t"><i class="fa fa-language"></i> Language:</span> ${data.language}</p>
-                <p class="lang"><span class="t"><i class="fa fa-star"></i> Rating:</span> <strong>${data.rating.average}</strong> / 10</p>
-                <div class="links">
-                    <a class="more" href="${data.officialSite}" target="_blanc" >Official Site</a>
-                </div>
+                ${rate}
+                ${link}
             </div>
 
         </div>
